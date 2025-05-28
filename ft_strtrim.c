@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uardaozdes <uardaozdes@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/27 15:25:11 by uardaozdes        #+#    #+#             */
-/*   Updated: 2025/05/28 09:45:52 by uardaozdes       ###   ########.fr       */
+/*   Created: 2025/05/28 16:45:51 by uardaozdes        #+#    #+#             */
+/*   Updated: 2025/05/28 17:14:55 by uardaozdes       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char	*dst, const char *src, size_t dstsize)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	size_t	dst_len;
-	size_t	src_len;
-	size_t	i;
+	size_t	start;
+	size_t	end;
+	char	*trimmed;
 
-	dst_len = ft_strnlen(dst, dstsize);
-	src_len = ft_strlen(src);
-	if (dstsize <= dst_len)
-		return (dstsize + src_len);
-	i = 0;
-	while (src[i] != '\0' && (dst_len + i) < dstsize - 1)
-	{
-		dst[dst_len + i] = src[i];
-		i++;
-	}
-	if (dst_len + i < dstsize)
-		dst[dst_len + i] = '\0';
-	return (dst_len + src_len);
+	if (!s1 || !set)
+		return (NULL);
+	start = 0;
+	while (s1[start] && ft_strchr(set, s1[start]))
+		start++;
+	end = ft_strlen(s1);
+	while (end > start && ft_strchr(set, s1[end - 1]))
+		end--;
+	trimmed = ft_substr(s1, start, end - start);
+	return (trimmed);
 }

@@ -1,34 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uardaozdes <uardaozdes@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/27 15:25:11 by uardaozdes        #+#    #+#             */
-/*   Updated: 2025/05/28 09:45:52 by uardaozdes       ###   ########.fr       */
+/*   Created: 2025/05/28 13:30:28 by uardaozdes        #+#    #+#             */
+/*   Updated: 2025/05/28 13:48:12 by uardaozdes       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char	*dst, const char *src, size_t dstsize)
+void	*calloc(size_t nmemb, size_t size)
 {
-	size_t	dst_len;
-	size_t	src_len;
-	size_t	i;
+	size_t	malloc_size;
+	void	*malloc_ptr;
 
-	dst_len = ft_strnlen(dst, dstsize);
-	src_len = ft_strlen(src);
-	if (dstsize <= dst_len)
-		return (dstsize + src_len);
-	i = 0;
-	while (src[i] != '\0' && (dst_len + i) < dstsize - 1)
-	{
-		dst[dst_len + i] = src[i];
-		i++;
-	}
-	if (dst_len + i < dstsize)
-		dst[dst_len + i] = '\0';
-	return (dst_len + src_len);
+	malloc_size = nmemb * size;
+	malloc_ptr = malloc(malloc_size);
+	if (!malloc_ptr)
+		return (NULL);
+	ft_memset(malloc_ptr, 0, malloc_size);
+	return (malloc_ptr);
 }
