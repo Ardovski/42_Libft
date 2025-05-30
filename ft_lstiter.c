@@ -1,28 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uardaozdes <uardaozdes@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/29 20:44:51 by uozdes            #+#    #+#             */
-/*   Updated: 2025/05/30 09:53:55 by uardaozdes       ###   ########.fr       */
+/*   Created: 2025/05/30 16:46:30 by uardaozdes        #+#    #+#             */
+/*   Updated: 2025/05/30 16:57:01 by uardaozdes       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	t_list	*last;
+	t_list	*temp;
 
-	if (!lst || !new)
+	if (!lst || !f)
 		return ;
-	if (*lst == NULL)
-		*lst = new;
-	else
+	temp = lst;
+	while (temp != NULL)
 	{
-		last = ft_lstlast(*lst);
-		last->next = new;
+		f(temp->content);
+		temp = temp->next;
 	}
 }

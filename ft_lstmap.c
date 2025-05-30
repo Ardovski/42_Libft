@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uardaozdes <uardaozdes@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/29 20:44:51 by uozdes            #+#    #+#             */
-/*   Updated: 2025/05/30 09:53:55 by uardaozdes       ###   ########.fr       */
+/*   Created: 2025/05/30 16:57:58 by uardaozdes        #+#    #+#             */
+/*   Updated: 2025/05/30 17:04:47 by uardaozdes       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*last;
+	t_list	*temp;
+	char	*new;
 
-	if (!lst || !new)
+	if (!lst || !f || !del)
 		return ;
-	if (*lst == NULL)
-		*lst = new;
-	else
+	new = malloc()
+	temp = lst;
+	while (lst != NULL)
 	{
-		last = ft_lstlast(*lst);
-		last->next = new;
+		temp->content = f(temp->content);
+		temp = temp->next;
 	}
+	
+	
 }
