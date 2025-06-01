@@ -6,7 +6,7 @@
 /*   By: uozdes <uardaozdes@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 12:22:36 by uozdes            #+#    #+#             */
-/*   Updated: 2025/06/01 12:31:07 by uozdes           ###   ########.fr       */
+/*   Updated: 2025/06/01 13:05:40 by uozdes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,5 @@
 
 char	**ft_split(char const *s, char c)
 {
-	size_t	i;
 	
-	if (!s)
-		return (NULL);
-	while ()
 }
