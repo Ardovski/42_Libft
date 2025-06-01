@@ -1,35 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: uozdes <uardaozdes@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/01 12:15:01 by uozdes            #+#    #+#             */
-/*   Updated: 2025/06/01 12:15:37 by uozdes           ###   ########.fr       */
+/*   Created: 2025/06/01 12:22:36 by uozdes            #+#    #+#             */
+/*   Updated: 2025/06/01 12:31:07 by uozdes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
+char	**ft_split(char const *s, char c)
 {
-	t_list	*new_list;
-	t_list	*new_elem;
-	void	*new_content;
-
-	new_list = NULL;
-	while (lst)
-	{
-		new_content = f(lst->content);
-		new_elem = ft_lstnew(new_content);
-		if (!new_elem)
-		{
-			ft_lstclear(&new_list, del);
-			return (NULL);
-		}
-		ft_lstadd_back(&new_list, new_elem);
-		lst = lst->next;
-	}
-	return (new_list);
+	size_t	i;
+	
+	if (!s)
+		return (NULL);
+	while ()
 }
