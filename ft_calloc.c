@@ -6,13 +6,13 @@
 /*   By: uardaozdes <uardaozdes@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 13:30:28 by uardaozdes        #+#    #+#             */
-/*   Updated: 2025/05/28 13:48:12 by uardaozdes       ###   ########.fr       */
+/*   Updated: 2025/06/03 07:20:47 by uardaozdes       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*calloc(size_t nmemb, size_t size)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
 	size_t	malloc_size;
 	void	*malloc_ptr;
