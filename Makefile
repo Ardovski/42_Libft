@@ -1,5 +1,5 @@
 # Programın adı
-NAME = libft
+NAME = libft.a
 
 # Derleyici
 CC = cc
@@ -22,12 +22,18 @@ OBJS = $(patsubst %.c, %.o, $(SRCS))
 # Temizleme komutu (işletim sistemine göre değişebilir, Linux/macOS için)
 RM = rm -f
 
-# Ana kural: Programı derler
-all: $(NAME)
+TEST = test
+MAIN = main.c
+
+# Hem kütüphane hem test programı tek komutla oluşsun
+all: $(NAME) $(TEST)
 
 # Programı linkleme kuralı: Nesne dosyalarından çalıştırılabilir dosyayı oluşturur
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	ar rcs $(NAME) $(OBJS)
+
+$(TEST): $(NAME) $(MAIN)
+	$(CC) $(CFLAGS) $(INC) $(MAIN) $(NAME) -o $(TEST)
 
 # .c dosyalarını .o dosyalarına derleme kuralı
 # $< : Kuralın bağımlılığı (yani .c dosyası)
@@ -41,7 +47,7 @@ clean:
 
 # Nesne dosyalarını ve çalıştırılabilir dosyayı temizleme kuralı
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) $(NAME) $(TEST)
 
 # Her şeyi temizleyip yeniden derleme kuralı
 re: fclean all

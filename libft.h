@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uardaozdes <uardaozdes@gmail.com>          +#+  +:+       +#+        */
+/*   By: uozdes <uardaozdes@gmail.com>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 10:08:10 by uardaozdes        #+#    #+#             */
-/*   Updated: 2025/06/03 07:20:56 by uardaozdes       ###   ########.fr       */
+/*   Updated: 2025/06/07 17:05:55 by uozdes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
+char	*ft_strtrim(char const *s1, char const *set);
 
 typedef struct s_list
 {
