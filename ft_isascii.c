@@ -6,15 +6,15 @@
 /*   By: uardaozdes <uardaozdes@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 10:26:31 by uardaozdes        #+#    #+#             */
-/*   Updated: 2025/05/27 10:32:57 by uardaozdes       ###   ########.fr       */
+/*   Updated: 2025/06/11 15:41:41 by uardaozdes       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isascii(int a)
+int	ft_isascii(int c)
 {
-	if (a >= 0 && a <= 127)
+	if (c >= 0 && c <= 127)
 		return (1);
 	return (0);
 }

@@ -6,18 +6,18 @@
 /*   By: uardaozdes <uardaozdes@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 10:35:38 by uardaozdes        #+#    #+#             */
-/*   Updated: 2025/05/27 11:12:26 by uardaozdes       ###   ########.fr       */
+/*   Updated: 2025/06/11 15:46:39 by uardaozdes       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *a)
+size_t strlen(const char *s)
 {
 	size_t	i;
 
 	i = 0;
-	while (a[i] != '\0')
+	while (s[i] != '\0')
 		i++;
 	return (i);
 }

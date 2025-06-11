@@ -3,96 +3,92 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uozdes <uardaozdes@gmail.com>              +#+  +:+       +#+        */
+/*   By: uardaozdes <uardaozdes@gmail.com>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/08 11:08:08 by uozdes            #+#    #+#             */
-/*   Updated: 2025/06/09 09:34:46 by uozdes           ###   ########.fr       */
+/*   Created: 2025/06/03 11:45:23 by uardaozdes        #+#    #+#             */
+/*   Updated: 2025/06/03 13:31:57 by uardaozdes       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	safe_malloc(char **token_v, int position, size_t buffer)
+static int	ft_count(const char *s, char c)
 {
-	int		i;
+	size_t	count;
+	size_t	i;
 
+	count = 0;
 	i = 0;
-	token_v[position] = malloc(buffer);
-	if (NULL == token_v[position])
+	while (s[i])
 	{
-		while (i < position)
-			free(token_v[i++]);
-		free(token_v);
-		return (1);
+		while (s[i] && s[i] == c)
+			i++;
+		if (s[i] && s[i] != c)
+		{
+			count++;
+			while (s[i] && s[i] != c)
+				i++;
+		}
 	}
-	return (0);
+	return (count);
 }
 
-int	fill(char **token_v, char const *s, char delimeter)
+static int	word_len(const char *s, char c)
 {
 	size_t	len;
-	int		i;
 
-	i = 0;
-	while (*s)
-	{
-		len = 0;
-		while (*s == delimeter && *s)
-			++s;
-		while (*s != delimeter && *s)
-		{
-			++len;
-			++s;
-		}
-		if (len)
-		{
-			 if (safe_malloc(token_v, i, len + 1))
-				   return (1);
-		  ft_strlcpy(token_v[i], s - len, len + 1);
-		}
-		++i;
-	}
-	return (0);
+	len = 0;
+	while (s[len] && s[len] != c)
+		len++;
+	return (len);
 }
 
-size_t	count_tokens(char const *s, char delimeter)
+static void	free_all(char **arr)
 {
-	size_t	tokens;
-	int		inside_token;
+	size_t	i;
 
-	tokens = 0;
-	while (*s)
-	{
-		inside_token = 0;
-		while (*s == delimeter && *s)
-			++s;
-		while (*s != delimeter && *s)
-		{
-			if (!inside_token)
-			{
-				++tokens;
-				inside_token = 42;
-			}
-			++s;
-		}
-	}
-	return (tokens);
+	i = 0;
+	while (arr[i])
+		free(arr[i++]);
+	free(arr);
+}
+
+static int	fill_word(char **res, const char **s, char c, size_t i)
+{
+	size_t	len;
+	size_t	j;
+
+	len = word_len(*s, c);
+	res[i] = malloc(len + 1);
+	if (!res[i])
+		return (0);
+	j = 0;
+	while (j < len)
+		res[i][j++] = *(*s)++;
+	res[i][j] = '\0';
+	return (1);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	size_t	tokens;
-	char	**token_v;
+	char	**res;
+	size_t	i;
+	size_t	word;
 
-	if (NULL == s)
+	if (!s)
 		return (NULL);
-	tokens = 0;
-	tokens = count_tokens(s, c);
-	token_v = malloc((tokens + 1) * sizeof(char *));
-	if (NULL == token_v)
+	word = ft_count(s, c);
+	res = malloc(sizeof(char *) * (word + 1));
+	if (!res)
 		return (NULL);
-	token_v[tokens] = NULL;
-	if (fill(token_v, s, c))
-		return (NULL);
-	return (token_v);
+	i = 0;
+	while (*s && i < word)
+	{
+		while (*s == c)
+			s++;
+		if (*s && !fill_word(res, &s, c, i++))
+			return (free_all(res), NULL);
+	}
+	res[i] = NULL;
+	return (res);
 }

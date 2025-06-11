@@ -1,25 +1,13 @@
 #include <stdio.h>
-#include "libft.h"
+#include "libft.h"   // libft fonksiyon prototipleri burada
 
-char	my_toupper(unsigned int i, char c)
+int main(void)
 {
-	(void)i;
-	if (c >= 'a' && c <= 'z')
-		return (c - 32);
-	return (c);
-}
-
-int	main(void)
-{
-	char s[] = "AASSdsdDDeeee";
-	char *a;
-
-	a = ft_strmapi(s, my_toupper);
-	if (a)
-	{
-		printf("Orijinal: %s\n", s);
-		printf("Büyük harf: %s\n", a);
-		free(a);
-	}
-	return (0);
+    char str[] = "Arda Bey";
+    size_t len = ft_strlen(str);
+    
+    printf("Girdiğiniz string: %s\n", str);
+    printf("String uzunluğu: %s\n", str);
+    
+    return 0;
 }
